@@ -15,3 +15,5 @@ int main(){
     }
 }
 // https://open.kattis.com/problems/treirad?editresubmit=18847518
+// the bug that I encouter was I did not put a limiting factor or something to end the loop sooner
+// When the product is already greater that  tbhen i should print the count
