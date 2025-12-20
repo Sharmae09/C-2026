@@ -1,43 +1,58 @@
 #include <stdio.h>
 #include <string.h>
+
 int main(){
+    // stores the sentence
     char str[500];
-    char cpy[100];
-    char cpy2[100];
+    // 2d array - to store 100 words
+    char words[100][100];
+    int count[100] = {0};
+    // Track how many unique words 
+    int unique = 0;
     
+    // get sentece input
     fgets(str, sizeof(str), stdin);
+    
+    // Remove newline from fgets
     str[strcspn(str, "\n")] = '\0';
     
+    // get first word; split by space
+    char *word = strtok(str, " ");
     
-    int count[100] = {0};
-    
-    strcpy(cpy, str);
-    strcpy(cpy2, str);
-    
-    char* wrd = strtok(cpy, " ");
-    char* wrd2 = strtok(cpy, " ");
-    int i = 0;
-    while(wrd != NULL){
-        // get each word
-        *wrd = strtok(NULL, " ");
-        while(wrd != NULL){
-            // compare each word to the word in str
-            if(strcmp(wrd, wrd2)){
-                count[i] += 1;
+    // loop as long there is a word
+    while(word != NULL){
+        // Check if word already exists
+        int found = 0;
+        for(int i = 0; i < unique; i++){
+            // compare the word to each of the words in the str
+            if(strcmp(words[i], word) == 0){
+                // compare current word
+                count[i]++;
+                // mark found
+                found = 1;
+                break;
             }
-            *wrd2 = strtok(NULL, " ");
         }
-        i++;
+        
+        // If not found, add the current word 
+        //to the array of unique word
+        if(!found){
+            strcpy(words[unique], word);
+            count[unique] = 1;
+            unique++;
+        }
+        
+        word = strtok(NULL, " ");
     }
-    for(int j = 0; j < 100; j++){
-       if(count[j] > 1){
-           printf("no");
-           return 0;
-       }
+    
+    // Check if any word appears more than once
+    for(int i = 0; i < unique; i++){
+        if(count[i] > 1){
+            printf("no\n");
+            return 0;
+        }
     }
-    printf("yes");
+    
+    printf("yes\n");
     return 0;
 }
-
-// Need to check if any of the ords have duplicate
-// https://open.kattis.com/problems/nodup?editresubmit=18876463
