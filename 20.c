@@ -75,3 +75,38 @@ int main(){
     
     return 0;
 }
+
+// my corrected version
+#include <stdio.h>
+int main(){
+    int n;
+    int count[10];
+    // If I want to set the element to in thats not zero I neeed to loop it
+    for(int i = 0; i  < 10; i++){
+        count[i]= -1;
+    }
+    
+    int j = 0;
+    for(int i = 0; i < 10; i++){
+        scanf("%d", &n);
+        // get the modulo
+        int modulo =  n%42;
+        int found = 0;
+        for(int k = 0; k < 10; k++){
+            // if the modulo is already in the count 
+            if(modulo == count[k]){
+                // then signal that num is found
+                found = 1;
+            }
+        }
+        // if not found add it to the count
+        if(found != 1){
+            count[j] = modulo;
+            j++;
+        }
+    }
+    
+    printf("%d", j);
+    return 0;
+}
+
