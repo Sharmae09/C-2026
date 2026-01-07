@@ -8,3 +8,6 @@ int main(){
     printf("%s", str);
     return 0;
 }
+
+// https://open.kattis.com/problems/bergmal?editresubmit=18921778
+// I typed stdion wrong
