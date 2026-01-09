@@ -9,3 +9,6 @@ int main(){
     }
     return 0;
 }
+
+//  https://open.kattis.com/problems/takkfyrirmig?editresubmit=18927448 
+// I put an ! in Takk %s\n
